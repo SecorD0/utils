@@ -1,12 +1,12 @@
 if [ -n "$3" ]; then
-	var_or_com="alias"
+	is_command="alias"
 else
-	var_or_com="export"
+	is_command="export"
 fi
 . ~/.bash_profile
 if ! cat ~/.bash_profile | grep -q "$1"; then
-	echo "$var_or_com $1=\"$2\"" >> ~/.bash_profile
+	echo "$is_command $1=\"$2\"" >> ~/.bash_profile
 elif ! cat ~/.bash_profile | grep -q "$1=\"$2\""; then
-	sed -i "s/$var_or_com $1*=.*/$var_or_com $1=\"$2\"/" ~/.bash_profile
+	sed -i "s/$is_command $1*=.*/$is_command $1=\"$2\"/" ~/.bash_profile
 fi
 . ~/.bash_profile
