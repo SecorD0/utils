@@ -8,5 +8,5 @@ if ! go version | grep -q $version; then
 	sudo tar -C /usr/local -xzf "go$version.linux-amd64.tar.gz"
 	rm "go$version.linux-amd64.tar.gz"
 	echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
-	source ~/.bash_profile
+	. ~/.bash_profile
 fi
