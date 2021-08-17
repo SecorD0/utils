@@ -4,8 +4,7 @@
 # $4 - replase it to $1
 #!/bin/bash
 if [ "$2" = "" ]; then
-	read -p $'Enter the value: \e[40m\e[92m' value
-	echo -n -e '\e[0m'
+	read -p $'\e[40m\e[92mEnter the value:\e[0m ' value
 else
 	value=$2
 fi
