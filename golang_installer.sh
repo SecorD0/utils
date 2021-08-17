@@ -1,5 +1,10 @@
+# $1 - GO version
 #!/bin/bash
-version="1.16.5"
+if [ -n "$1" ]; then
+	version=$1
+else
+	version="1.16.5"
+fi
 if ! go version | grep -q $version; then
 	sudo apt install tar wget -y
 	cd $HOME
