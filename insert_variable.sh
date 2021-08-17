@@ -2,6 +2,7 @@
 # $2 - variable value
 # $3 - is it a command? (true, false)
 # $4 - replase it to $1
+#!/bin/bash
 if [ -n "$3" ]; then
 	is_command="alias"
 else
