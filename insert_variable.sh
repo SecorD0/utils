@@ -19,14 +19,11 @@ if [ -n "$4" ]; then
 . ~/.bash_profile
 fi
 if ! cat ~/.bash_profile | grep -q "$1"; then
-	echo 1
 	echo "$is_command $1=\"$value\"" >> ~/.bash_profile
 elif ! cat ~/.bash_profile | grep -q "$1=\"$value\""; then
-	echo 2
 	sed -i "s/^.*$1*=.*/$is_command $1=\"$value\"/" ~/.bash_profile
 fi
 if cat ~/.bash_profile | grep -q "$1=\"$value\""; then
-	echo 3
 	sed -i "s/^.*$1*=.*/$is_command $1=\"$value\"/" ~/.bash_profile
 fi
 . ~/.bash_profile
