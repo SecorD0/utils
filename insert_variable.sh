@@ -1,7 +1,7 @@
 # $1 - variable name
 # $2 - variable value
 # $3 - is it a command? (true, false)
-# $4 - replase it to $1
+# $4 - replace it to $1
 #!/bin/bash
 if [ "$2" = "" ]; then
 	read -p $'Enter the value: \e[40m\e[92m' value
