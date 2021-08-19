@@ -3,6 +3,7 @@
 # $3 - is it a command? (true, false)
 # $4 - replase it to $1
 #!/bin/bash
+touch ~/.bash_profile
 . ~/.bash_profile
 if [ "$2" = "" ]; then
 	read -p $'\e[40m\e[92mEnter the value:\e[0m ' value
