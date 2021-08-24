@@ -9,5 +9,4 @@ if ! docker --version; then
 	sudo apt install docker-ce-cli containerd.io -y
 	version=$(apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)")
 	sudo apt install docker-ce="$version" docker-ce-cli="$version" containerd.io -y
-	sudo docker run hello-world
 fi
