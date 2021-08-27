@@ -5,7 +5,7 @@ if [ "$1" = "true" ]; then
 else
 	uninstall="false"
 fi
-if $uninstall = "false"; then
+if [ "$uninstall" = "false" ]; then
 	if ! docker --version; then
 		cd
 		sudo apt update
