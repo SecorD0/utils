@@ -1,23 +1,21 @@
-# $1 - Uninstall the Docker? (true, false)
+# $1 - Uninstall Docker? (true, false)
 #!/bin/bash
 if [ "$1" = "true" ]; then
 	uninstall="true"
 else
 	uninstall="false"
 fi
-if [ "$uninstall" = "false" ]; then
-	if ! docker --version; then
-		cd
-		sudo apt update
-		sudo apt install curl apt-transport-https ca-certificates gnupg lsb-release -y
-		curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-		echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-		sudo apt update
-		sudo apt install docker-ce docker-ce-cli containerd.io -y
-		docker_version=$(apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)")
-		sudo apt install docker-ce="$docker_version" docker-ce-cli="$docker_version" containerd.io -y
-	fi
-else
+if [ "$uninstall" = "false" ] && ! docker --version; then
+	cd
+	sudo apt update
+	sudo apt install curl apt-transport-https ca-certificates gnupg lsb-release -y
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt update
+	sudo apt install docker-ce docker-ce-cli containerd.io -y
+	docker_version=$(apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)")
+	sudo apt install docker-ce="$docker_version" docker-ce-cli="$docker_version" containerd.io -y
+elif [ "$uninstall" = "true" ]; then
 	systemctl stop docker.service
 	systemctl stop docker.socket
 	sudo rm $(systemctl cat docker.service | grep -oPm1 "(?<=^#)([^%]+)")
