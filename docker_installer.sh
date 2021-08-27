@@ -16,8 +16,8 @@ if [ "$uninstall" = "false" ] && ! docker --version; then
 	docker_version=$(apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)")
 	sudo apt install docker-ce="$docker_version" docker-ce-cli="$docker_version" containerd.io -y
 elif [ "$uninstall" = "true" ]; then
-	systemctl stop docker.service
-	systemctl stop docker.socket
+	sudo systemctl stop docker.service
+	sudo systemctl stop docker.socket
 	sudo rm $(systemctl cat docker.service | grep -oPm1 "(?<=^#)([^%]+)")
 	sudo rm $(systemctl cat docker.socket | grep -oPm1 "(?<=^#)([^%]+)")
 	sudo apt purge docker-engine docker docker.io docker-ce docker-ce-cli -y
