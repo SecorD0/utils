@@ -1,5 +1,5 @@
-# $1 - NVM version
 #!/bin/bash
+# $1 - NVM version
 if [ -n "$1" ]; then
 	nvm_version=$1
 else
