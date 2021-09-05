@@ -1,5 +1,5 @@
-# $1 - Python version
 #!/bin/bash
+# $1 - Python version
 if [ -n "$1" ]; then
 	python_version=$1
 else
