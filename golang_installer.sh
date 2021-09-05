@@ -1,5 +1,5 @@
-# $1 - GO version
 #!/bin/bash
+# $1 - GO version
 if [ -n "$1" ]; then
 	go_version=$1
 else
