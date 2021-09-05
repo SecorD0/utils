@@ -1,5 +1,5 @@
-# $1 - Uninstall Docker? (true, false)
 #!/bin/bash
+# $1 - Uninstall Docker? (true, false)
 if [ "$1" = "true" ]; then
 	uninstall="true"
 else
