@@ -1,5 +1,5 @@
-# $1 - Node.js version
 #!/bin/bash
+# $1 - Node.js version
 if [ -n "$1" ]; then
 	nodejs_version=$1
 else
