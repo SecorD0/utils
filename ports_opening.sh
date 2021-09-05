@@ -1,5 +1,5 @@
-# $@ - any number of ports with a space
 #!/bin/bash
+# $@ - any number of ports with a space
 if sudo ufw status | grep -q "Status: active"; then
 	for port in "$@"; do
 		sudo ufw allow "$port"
