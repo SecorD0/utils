@@ -71,7 +71,7 @@ while test $# -gt 0; do
 			echo
 			echo -e "${C_LGn}Functionality${RES}: the script assigns variables with colors to be used in the texts (e.g. in the 'echo' and 'printf' commands)"
 			echo
-			echo -e "Usage: script ${C_LGn}[OPTIONS]${RES}"
+			echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
 			echo
 			echo -e "${C_LGn}Options${RES}:"
 			echo -e "  -h, --help  show help page"
