@@ -17,6 +17,8 @@ while test $# -gt 0; do
 		echo -e "  -h, --help             show the help page"
 		echo -e "  -v, --version VERSION  Python VERSION to install (default is ${C_LGn}${python_version}${RES})"
 		echo
+		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
+		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
 		echo -e "https://github.com/SecorD0/utils/blob/main/python_installer.sh - script URL"
 		echo -e "https://t.me/letskynode — node Community"
