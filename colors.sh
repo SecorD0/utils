@@ -1,3 +1,4 @@
+#!/bin/bash
 # Reset
 RES='\033[0m'       # Reset format
 
