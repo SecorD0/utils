@@ -1,6 +1,36 @@
 #!/bin/bash
-# $@ - any number of ports with a space
+# Options
+. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
+option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
+while test $# -gt 0; do
+	case "$1" in
+	-h|--help)
+		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
+		echo
+		echo -e "${C_LGn}Functionality${RES}: the script opens specified ports"
+		echo
+		echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES} ${C_LGn}[ARGUMENTS]${RES}"
+		echo
+		echo -e "${C_LGn}Options${RES}:"
+		echo -e "  -h, --help  show the help page"
+		echo
+		echo -e "${C_LGn}Arguments${RES} - any ports to open separated by spaces"
+		echo
+		echo -e "${C_LGn}Useful URLs${RES}:"
+		echo -e "https://github.com/SecorD0/utils/blob/main/ports_opening.sh - script URL"
+		echo -e "https://t.me/letskynode — node Community"
+		echo
+		return 0
+		;;
+	*|--)
+		break
+		;;
+	esac
+done
+# Actions
+echo -e "${C_LGn}Opening port(s)...${RES}"
 if sudo ufw status | grep -q "Status: active"; then
+	sudo ufw allow 22
 	for port in "$@"; do
 		sudo ufw allow "$port"
 	done
@@ -15,3 +45,4 @@ else
 	done
 	sudo netfilter-persistent save
 fi
+echo -e "${C_LGn}Done!${RES}"
