@@ -28,7 +28,7 @@ while test $# -gt 0; do
 	esac
 done
 # Actions
-echo -e "${C_LGn}Opening port(s)...${RES}"
+echo -e "${C_LGn}Port(s) opening...${RES}"
 if sudo ufw status | grep -q "Status: active"; then
 	sudo ufw allow 22
 	for port in "$@"; do
