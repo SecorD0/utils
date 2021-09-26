@@ -19,7 +19,7 @@ while test $# -gt 0; do
 		echo
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h, --help           show the help page"
-		echo -e "  -n, --name NAME      variable or alias NAME"
+		echo -e "  -n, --name NAME      variable or alias NAME (mandatory)"
 		echo -e "  -v, --value VALUE    variable or alias VALUE (leave blank for manual input)"
 		echo -e "  -a, --alias          inserting an alias"
 		echo -e "  -r, --rename NAME_2  rename NAME_2 to NAME"
