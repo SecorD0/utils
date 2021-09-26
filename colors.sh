@@ -61,76 +61,73 @@ Ba_C='\033[46m'      # Cyan
 Ba_Gy='\033[47m'     # Gray
 
 # Options
-option_value(){ echo $1 | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
-
+option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
 while test $# -gt 0; do
 	case "$1" in
 	-h|--help)
-		if [[ "${BASH_SOURCE[0]}" == "${BASH_SOURCE[-1]}" ]]; then
-			. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
-			echo
-			echo -e "${C_LGn}Functionality${RES}: the script assigns variables with colors to be used in the texts (e.g. in the 'echo' and 'printf' commands)"
-			echo
-			echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
-			echo
-			echo -e "${C_LGn}Options${RES}:"
-			echo -e "  -h, --help  show help page"
-			echo
-			echo -e "${C_LGn}Colors${RES}:"
-			echo -e "Reset - \${RES}"
-			echo -e "┌─────────────────────────────┐  ┌─────────────────────────────┐"
-			echo -e "│       Base Characters       │  │     Underline Characters    │"
-			echo -e "├────────┬─────────┬──────────┤  ├────────┬─────────┬──────────┤"
-			echo -e "│ Color  │ Example │ Variable │  │ Color  │ Example │ Variable │"
-			echo -e "├────────┼─────────┼──────────┤  ├────────┼─────────┼──────────┤"
-			echo -e "│ Black  │ ${C_Bk}Example${RES} │ \${C_Bk}  │  │ Black  │ ${U_Bk}Example${RES} │ \${U_Bk}  │"
-			echo -e "│ Red    │ ${C_R}Example${RES} │ \${C_R}   │  │ Red    │ ${U_R}Example${RES} │ \${U_R}   │"
-			echo -e "│ Green  │ ${C_Gn}Example${RES} │ \${C_Gn}  │  │ Green  │ ${U_Gn}Example${RES} │ \${U_Gn}  │"
-			echo -e "│ Yellow │ ${C_Y}Example${RES} │ \${C_Y}   │  │ Yellow │ ${U_Y}Example${RES} │ \${U_Y}   │"
-			echo -e "│ Blue   │ ${C_Be}Example${RES} │ \${C_Be}  │  │ Blue   │ ${U_Be}Example${RES} │ \${U_Be}  │"
-			echo -e "│ Purple │ ${C_P}Example${RES} │ \${C_P}   │  │ Purple │ ${U_P}Example${RES} │ \${U_P}   │"
-			echo -e "│ Cyan   │ ${C_C}Example${RES} │ \${C_C}   │  │ Cyan   │ ${U_C}Example${RES} │ \${U_C}   │"
-			echo -e "│ Gray   │ ${C_Gy}Example${RES} │ \${C_Gy}  │  │ Gray   │ ${U_Gy}Example${RES} │ \${U_Gy}  │"
-			echo -e "└────────┴─────────┴──────────┘  └────────┴─────────┴──────────┘"
-			echo
-			echo -e "┌─────────────────────────────┐  ┌─────────────────────────────┐"
-			echo -e "│       Light Characters      │  │     Blinking Characters     │"
-			echo -e "├────────┬─────────┬──────────┤  ├────────┬─────────┬──────────┤"
-			echo -e "│ Color  │ Example │ Variable │  │ Color  │ Example │ Variable │"
-			echo -e "├────────┼─────────┼──────────┤  ├────────┼─────────┼──────────┤"
-			echo -e "│        │         │          │  │ Black  │ ${Bl_Bk}Example${RES} │ \${Bl_Bk} │"
-			echo -e "│ Red    │ ${C_LR}Example${RES} │ \${C_LR}  │  │ Red    │ ${Bl_R}Example${RES} │ \${Bl_R}  │"
-			echo -e "│ Green  │ ${C_LGn}Example${RES} │ \${C_LGn} │  │ Green  │ ${Bl_Gn}Example${RES} │ \${Bl_Gn} │"
-			echo -e "│ Yellow │ ${C_LY}Example${RES} │ \${C_LY}  │  │ Yellow │ ${Bl_Y}Example${RES} │ \${Bl_Y}  │"
-			echo -e "│ Blue   │ ${C_LBe}Example${RES} │ \${C_LBe} │  │ Blue   │ ${Bl_Be}Example${RES} │ \${Bl_Be} │"
-			echo -e "│ Purple │ ${C_LP}Example${RES} │ \${C_LP}  │  │ Purple │ ${Bl_P}Example${RES} │ \${Bl_P}  │"
-			echo -e "│ Cyan   │ ${C_LC}Example${RES} │ \${C_LC}  │  │ Cyan   │ ${Bl_C}Example${RES} │ \${Bl_C}  │"
-			echo -e "│ Gray   │ ${C_LGy}Example${RES} │ \${C_LGy} │  │ Gray   │ ${Bl_Gy}Example${RES} │ \${Bl_Gy} │"
-			echo -e "└────────┴─────────┴──────────┘  └────────┴─────────┴──────────┘"
-			echo
-			echo -e "┌─────────────────────────────┐  ┌─────────────────────────────┐"
-			echo -e "│       Dark Characters       │  │         Background          │"
-			echo -e "├────────┬─────────┬──────────┤  ├────────┬─────────┬──────────┤"
-			echo -e "│ Color  │ Example │ Variable │  │ Color  │ Example │ Variable │"
-			echo -e "├────────┼─────────┼──────────┤  ├────────┼─────────┼──────────┤"
-			echo -e "│ Black  │ ${C_DBk}Example${RES} │ \${C_DBk} │  │ Black  │ ${Ba_Bk}Example${RES} │ \${Ba_Bk} │"
-			echo -e "│ Red    │ ${C_DR}Example${RES} │ \${C_DR}  │  │ Red    │ ${Ba_R}Example${RES} │ \${Ba_R}  │"
-			echo -e "│ Green  │ ${C_DGn}Example${RES} │ \${C_DGn} │  │ Green  │ ${Ba_Gn}Example${RES} │ \${Ba_Gn} │"
-			echo -e "│ Yellow │ ${C_DY}Example${RES} │ \${C_DY}  │  │ Yellow │ ${Ba_Y}Example${RES} │ \${Ba_Y}  │"
-			echo -e "│ Blue   │ ${C_DBe}Example${RES} │ \${C_DBe} │  │ Blue   │ ${Ba_Be}Example${RES} │ \${Ba_Be} │"
-			echo -e "│ Purple │ ${C_DP}Example${RES} │ \${C_DP}  │  │ Purple │ ${Ba_P}Example${RES} │ \${Ba_P}  │"
-			echo -e "│ Cyan   │ ${C_DC}Example${RES} │ \${C_DC}  │  │ Cyan   │ ${Ba_C}Example${RES} │ \${Ba_C}  │"
-			echo -e "│ Gray   │ ${C_DGy}Example${RES} │ \${C_DGy} │  │ Gray   │ ${Ba_Gy}Example${RES} │ \${Ba_Gy} │"
-			echo -e "└────────┴─────────┴──────────┘  └────────┴─────────┴──────────┘"
-			echo
-			echo -e "${C_LGn}Useful URLs${RES}:"
-			echo -e "https://github.com/SecorD0/utils/blob/main/colors.sh - script URL"
-			echo -e "https://t.me/letskynode — node Community"
-			echo
-		fi
+		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
+		echo
+		echo -e "${C_LGn}Functionality${RES}: the script assigns variables with colors to be used in the texts (e.g. in the 'echo' and 'printf' commands)"
+		echo
+		echo -e "Usage: script ${C_LGn}[OPTIONS]${RES}"
+		echo
+		echo -e "${C_LGn}Options${RES}:"
+		echo -e "  -h, --help  show the help page"
+		echo
+		echo -e "${C_LGn}Colors${RES}:"
+		echo -e "Reset - \${RES}"
+		echo -e "┌─────────────────────────────┐  ┌─────────────────────────────┐"
+		echo -e "│       Base Characters       │  │     Underline Characters    │"
+		echo -e "├────────┬─────────┬──────────┤  ├────────┬─────────┬──────────┤"
+		echo -e "│ Color  │ Example │ Variable │  │ Color  │ Example │ Variable │"
+		echo -e "├────────┼─────────┼──────────┤  ├────────┼─────────┼──────────┤"
+		echo -e "│ Black  │ ${C_Bk}Example${RES} │ \${C_Bk}  │  │ Black  │ ${U_Bk}Example${RES} │ \${U_Bk}  │"
+		echo -e "│ Red    │ ${C_R}Example${RES} │ \${C_R}   │  │ Red    │ ${U_R}Example${RES} │ \${U_R}   │"
+		echo -e "│ Green  │ ${C_Gn}Example${RES} │ \${C_Gn}  │  │ Green  │ ${U_Gn}Example${RES} │ \${U_Gn}  │"
+		echo -e "│ Yellow │ ${C_Y}Example${RES} │ \${C_Y}   │  │ Yellow │ ${U_Y}Example${RES} │ \${U_Y}   │"
+		echo -e "│ Blue   │ ${C_Be}Example${RES} │ \${C_Be}  │  │ Blue   │ ${U_Be}Example${RES} │ \${U_Be}  │"
+		echo -e "│ Purple │ ${C_P}Example${RES} │ \${C_P}   │  │ Purple │ ${U_P}Example${RES} │ \${U_P}   │"
+		echo -e "│ Cyan   │ ${C_C}Example${RES} │ \${C_C}   │  │ Cyan   │ ${U_C}Example${RES} │ \${U_C}   │"
+		echo -e "│ Gray   │ ${C_Gy}Example${RES} │ \${C_Gy}  │  │ Gray   │ ${U_Gy}Example${RES} │ \${U_Gy}  │"
+		echo -e "└────────┴─────────┴──────────┘  └────────┴─────────┴──────────┘"
+		echo
+		echo -e "┌─────────────────────────────┐  ┌─────────────────────────────┐"
+		echo -e "│       Light Characters      │  │     Blinking Characters     │"
+		echo -e "├────────┬─────────┬──────────┤  ├────────┬─────────┬──────────┤"
+		echo -e "│ Color  │ Example │ Variable │  │ Color  │ Example │ Variable │"
+		echo -e "├────────┼─────────┼──────────┤  ├────────┼─────────┼──────────┤"
+		echo -e "│        │         │          │  │ Black  │ ${Bl_Bk}Example${RES} │ \${Bl_Bk} │"
+		echo -e "│ Red    │ ${C_LR}Example${RES} │ \${C_LR}  │  │ Red    │ ${Bl_R}Example${RES} │ \${Bl_R}  │"
+		echo -e "│ Green  │ ${C_LGn}Example${RES} │ \${C_LGn} │  │ Green  │ ${Bl_Gn}Example${RES} │ \${Bl_Gn} │"
+		echo -e "│ Yellow │ ${C_LY}Example${RES} │ \${C_LY}  │  │ Yellow │ ${Bl_Y}Example${RES} │ \${Bl_Y}  │"
+		echo -e "│ Blue   │ ${C_LBe}Example${RES} │ \${C_LBe} │  │ Blue   │ ${Bl_Be}Example${RES} │ \${Bl_Be} │"
+		echo -e "│ Purple │ ${C_LP}Example${RES} │ \${C_LP}  │  │ Purple │ ${Bl_P}Example${RES} │ \${Bl_P}  │"
+		echo -e "│ Cyan   │ ${C_LC}Example${RES} │ \${C_LC}  │  │ Cyan   │ ${Bl_C}Example${RES} │ \${Bl_C}  │"
+		echo -e "│ Gray   │ ${C_LGy}Example${RES} │ \${C_LGy} │  │ Gray   │ ${Bl_Gy}Example${RES} │ \${Bl_Gy} │"
+		echo -e "└────────┴─────────┴──────────┘  └────────┴─────────┴──────────┘"
+		echo
+		echo -e "┌─────────────────────────────┐  ┌─────────────────────────────┐"
+		echo -e "│       Dark Characters       │  │         Background          │"
+		echo -e "├────────┬─────────┬──────────┤  ├────────┬─────────┬──────────┤"
+		echo -e "│ Color  │ Example │ Variable │  │ Color  │ Example │ Variable │"
+		echo -e "├────────┼─────────┼──────────┤  ├────────┼─────────┼──────────┤"
+		echo -e "│ Black  │ ${C_DBk}Example${RES} │ \${C_DBk} │  │ Black  │ ${Ba_Bk}Example${RES} │ \${Ba_Bk} │"
+		echo -e "│ Red    │ ${C_DR}Example${RES} │ \${C_DR}  │  │ Red    │ ${Ba_R}Example${RES} │ \${Ba_R}  │"
+		echo -e "│ Green  │ ${C_DGn}Example${RES} │ \${C_DGn} │  │ Green  │ ${Ba_Gn}Example${RES} │ \${Ba_Gn} │"
+		echo -e "│ Yellow │ ${C_DY}Example${RES} │ \${C_DY}  │  │ Yellow │ ${Ba_Y}Example${RES} │ \${Ba_Y}  │"
+		echo -e "│ Blue   │ ${C_DBe}Example${RES} │ \${C_DBe} │  │ Blue   │ ${Ba_Be}Example${RES} │ \${Ba_Be} │"
+		echo -e "│ Purple │ ${C_DP}Example${RES} │ \${C_DP}  │  │ Purple │ ${Ba_P}Example${RES} │ \${Ba_P}  │"
+		echo -e "│ Cyan   │ ${C_DC}Example${RES} │ \${C_DC}  │  │ Cyan   │ ${Ba_C}Example${RES} │ \${Ba_C}  │"
+		echo -e "│ Gray   │ ${C_DGy}Example${RES} │ \${C_DGy} │  │ Gray   │ ${Ba_Gy}Example${RES} │ \${Ba_Gy} │"
+		echo -e "└────────┴─────────┴──────────┘  └────────┴─────────┴──────────┘"
+		echo
+		echo -e "${C_LGn}Useful URLs${RES}:"
+		echo -e "https://github.com/SecorD0/utils/blob/main/colors.sh - script URL"
+		echo -e "https://t.me/letskynode — node Community"
+		echo
 		return 0
 		;;
-	*)
+	*|--)
 		break
 		;;
 	esac
