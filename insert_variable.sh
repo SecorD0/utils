@@ -25,6 +25,8 @@ while test $# -gt 0; do
 		echo -e "  -r, --rename NAME_2  rename NAME_2 to NAME"
 		echo -e "  -d, --delete         delete variable or alias by NAME"
 		echo
+		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
+		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
 		echo -e "https://github.com/SecorD0/utils/blob/main/insert_variable.sh - script URL"
 		echo -e "https://t.me/letskynode — node Community"
