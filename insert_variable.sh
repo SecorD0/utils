@@ -64,7 +64,6 @@ done
 # Functions
 printf_n(){ printf "$1\n" "${@:2}"; }
 # Actions
-echo $value
 touch $HOME/.bash_profile
 . $HOME/.bash_profile
 if [ ! -n "$name" ]; then
