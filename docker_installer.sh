@@ -1,5 +1,5 @@
 #!/bin/bash
-# Default variables
+# Default variablesd
 uninstall="false"
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
