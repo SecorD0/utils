@@ -57,6 +57,7 @@ else
 		sudo apt install docker-ce docker-ce-cli containerd.io -y
 		docker_version=`apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)"`
 		sudo apt install docker-ce="$docker_version" docker-ce-cli="$docker_version" containerd.io -y
+	fi
 	if ! dpkg -s dive | grep -q installed; then
 		echo -e "${C_LGn}Dive installing...${RES}"
 		wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
