@@ -87,10 +87,9 @@ else
 	if ! cat $HOME/.bash_profile | grep -q " ${name}="; then
 		echo "${type} ${name}=\"${value}\"" >> $HOME/.bash_profile
 	elif ! cat $HOME/.bash_profile | grep -qF "${name}=\"${value}\""; then
-		echo hi
 		sed -i "s%^.*${name}*=.*%${type} ${name}=\"${value}\"%" $HOME/.bash_profile
 	fi
-	variable=`cat $HOME/.bash_profile | grep -F "${name}=\"${value}\""`
+	variable=`cat $HOME/.bash_profile | grep -qF "${name}=\"${value}\""`
 	if ! grep "${type}" <<< "$variable"; then
 		sed -i "s%^.*${name}*=.*%${type} ${name}=\"${value}\"%" $HOME/.bash_profile
 	fi
