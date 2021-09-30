@@ -47,6 +47,7 @@ done
 # Functions
 printf_n(){ printf "$1\n" "${@:2}"; }
 # Actions
+sudo apt install wget jq -y &>/dev/null
 if [ ! -n "$project" ]; then
 	printf_n "${C_R}You didn't specify a project name via${RES} -p ${C_R}option!${RES}"
 	return 1 2>/dev/null; exit 1
