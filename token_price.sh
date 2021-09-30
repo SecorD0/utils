@@ -10,14 +10,15 @@ while test $# -gt 0; do
 	-h|--help)
 		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
 		echo
-		echo -e "${C_LGn}Functionality${RES}: the script parses the token price from CoinMarketCap page"
+		echo -e "${C_LGn}Functionality${RES}: the script parses a token price from CoinMarketCap page"
 		echo
 		echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
 		echo
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h, --help          show the help page"
 		echo -e "  -p, --project NAME  NAME of project to parse the token price. E.g. ${C_LGn}bitcoin${RES}, ${C_LGn}streamr${RES}."
-		echo -e "                      It's taken from a token page URL: https://coinmarketcap.com/currencies/${C_LGn}bitcoin${RES}/"
+		echo -e "                      It's taken from a token page URL:"
+		echo -e "                      https://coinmarketcap.com/currencies/${C_LGn}bitcoin${RES}/"
 		echo -e "  -r, --round NUMBER  round the value to NUMBER decimal places"
 		echo
 		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
