@@ -16,7 +16,7 @@ while test $# -gt 0; do
 		echo
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h, --help          show the help page"
-		echo -e "  -p, --project NAME  NAME of project to parse the token price. E.g. ${C_LGn}bitcoin${RES}, ${C_LGn}streamr${RES}."
+		echo -e "  -p, --project NAME  NAME of project to parse the token price. E.g. ${C_LGn}bitcoin${RES}, ${C_LGn}binance-coin${RES}."
 		echo -e "                      It's taken from a token page URL:"
 		echo -e "                      https://coinmarketcap.com/currencies/${C_LGn}bitcoin${RES}/"
 		echo -e "  -r, --round NUMBER  round the value to NUMBER decimal places"
