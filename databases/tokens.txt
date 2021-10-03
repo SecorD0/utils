@@ -1,4 +1,4 @@
-1	project_name	token_symbol	url
+1	project_name	token_symbol	cmc_name
 2	Bitcoin	BTC	bitcoin	
 3	Ethereum	ETH	ethereum	
 4	Cardano	ADA	cardano	
