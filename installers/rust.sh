@@ -41,7 +41,7 @@ done
 # Actions
 if [ "$uninstall" = "true" ]; then
 	echo -e "${C_LGn}Uninstalling Rust...${RES}"
-	rustup self uninstall
+	rustup self uninstall -y
 else
 	echo -e "${C_LGn}Installing Rust...${RES}"
 	sudo apt install curl build-essential pkg-config libssl-dev -y
