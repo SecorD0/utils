@@ -22,7 +22,7 @@ while test $# -gt 0; do
 		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
-		echo -e "https://github.com/SecorD0/utils/blob/main/installers/installers/golang.sh - script URL"
+		echo -e "https://github.com/SecorD0/utils/blob/main/installers/golang.sh - script URL"
 		echo -e "https://t.me/letskynode — node Community"
 		echo
 		return 0
