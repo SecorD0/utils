@@ -16,7 +16,7 @@ while test $# -gt 0; do
 		echo
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h, --help       show the help page"
-		echo -e "  -n, --nightly    show the help page"
+		echo -e "  -n, --nightly    install nightly version of Rust"
 		echo -e "  -u, --uninstall  uninstall Rust"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
