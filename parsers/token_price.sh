@@ -24,7 +24,7 @@ while test $# -gt 0; do
 		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
-		echo -e "https://github.com/SecorD0/Solana/blob/main/parsers/token_price.sh - script URL"
+		echo -e "https://github.com/SecorD0/utils/blob/main/parsers/token_price.sh - script URL"
 		echo -e "https://github.com/SecorD0/utils/blob/main/databases/tokens.txt - token database"
 		echo -e "https://t.me/letskynode — node Community"
 		echo
