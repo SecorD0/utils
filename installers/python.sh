@@ -1,6 +1,6 @@
 #!/bin/bash
 # Default variables
-python_version="3.9.6"
+python_version="3.9.7"
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
