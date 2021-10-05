@@ -44,7 +44,7 @@ if [ "$uninstall" = "true" ]; then
 	rustup self uninstall -y
 else
 	echo -e "${C_LGn}Installing Rust...${RES}"
-	sudo apt install curl build-essential pkg-config libssl-dev clang make -y
+	sudo apt install curl build-essential pkg-config libssl-dev libudev-dev clang make -y
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 	. $HOME/.cargo/env
 	if [ "$nightly" = "true" ]; then
