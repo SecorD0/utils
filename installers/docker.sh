@@ -48,7 +48,7 @@ if [ "$uninstall" = "true" ]; then
 else
 	cd
 	if ! docker --version; then
-		echo -e "${C_LGn}Docker installing...${RES}"
+		echo -e "${C_LGn}Docker installation...${RES}"
 		sudo apt update
 		sudo apt install curl apt-transport-https ca-certificates gnupg lsb-release -y
 		curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
