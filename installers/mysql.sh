@@ -46,7 +46,7 @@ if [ "$uninstall" = "true" ]; then
 	sudo find / -name .mysql_history -delete
 	echo -e "${C_LGn}Done!${RES}"
 else
-	echo -e "${C_LGn}Installing MySQL...${RES}"
+	echo -e "${C_LGn}MySQL installation...${RES}"
 	sudo apt update
 	sudo apt upgrade -y
 	sudo apt install mysql-server mysql-client -y
