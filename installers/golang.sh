@@ -47,7 +47,7 @@ if [ "$uninstall" = "true" ]; then
 	sed -i "s%:`which go | sed 's%/bin/go%%g'`%%g" $HOME/.bash_profile
 	rm -rf `which go | sed 's%/bin/go%%g'`
 elif ! go version | grep -q $go_version; then
-	echo -e "${C_LGn}Installing GO...${RES}"
+	echo -e "${C_LGn}GO installation...${RES}"
 	sed -i "s%:`which go | sed 's%/bin/go%%g'`%%g" $HOME/.bash_profile
 	rm -rf `which go | sed 's%/bin/go%%g'`
 	sudo apt install tar wget -y
