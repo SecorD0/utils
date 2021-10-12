@@ -1,6 +1,6 @@
 #!/bin/bash
 # Default variables
-go_version="1.16.5"
+go_version="1.17.2"
 uninstall="false"
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
