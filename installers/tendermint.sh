@@ -23,6 +23,7 @@ while test $# -gt 0; do
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
 		echo -e "https://github.com/SecorD0/utils/blob/main/installers/tendermint.sh - script URL"
+		echo -e "https://github.com/tendermint/tendermint - Tendermint repository"
 		echo -e "https://t.me/letskynode — node Community"
 		echo
 		return 0 2>/dev/null; exit 0
