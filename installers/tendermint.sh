@@ -1,6 +1,6 @@
 #!/bin/bash
 # Default variables
-tendermint_version="1.17.2"
+tendermint_version=""
 function="install"
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
@@ -16,7 +16,7 @@ while test $# -gt 0; do
 		echo
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h, --help             show the help page"
-		echo -e "  -v, --version VERSION  Tendermint VERSION to install (default is ${C_LGn}${tendermint_version}${RES})"
+		echo -e "  -v, --version VERSION  Tendermint VERSION to install (default is ${C_LGn}current${RES})"
 		echo -e "  -u, --uninstall        uninstall Tendermint"
 		echo
 		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
@@ -47,11 +47,13 @@ printf_n(){ printf "$1\n" "${@:2}"; }
 install() {
 	sudo apt update
 	sudo apt upgrade -y
-	sudo apt install wget -y
+	sudo apt install wget jq -y
 	local temp_dir="$HOME/installer_temp/"
 	mkdir "$temp_dir"
 	cd "$temp_dir"
-	local tendermint_version=`wget -qO- https://api.github.com/repos/tendermint/tendermint/releases/latest | jq -r ".tag_name" | sed "s%v%%g"`
+	if [ ! -n "$tendermint_version" ]; then
+		local tendermint_version=`wget -qO- https://api.github.com/repos/tendermint/tendermint/releases/latest | jq -r ".tag_name" | sed "s%v%%g"`
+	fi
 	wget -q "https://github.com/tendermint/tendermint/releases/download/v${tendermint_version}/tendermint_${tendermint_version}_linux_amd64.tar.gz"
 	tar -xvf "tendermint_${tendermint_version}_linux_amd64.tar.gz"
 	chmod +x "${temp_dir}tendermint"
