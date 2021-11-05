@@ -45,8 +45,8 @@ done
 
 # Functions
 install() {
+	echo -e "${C_LGn}GO installation...${RES}"
 	if ! go version | grep -q $go_version; then 
-		echo -e "${C_LGn}GO installation...${RES}"
 		sed -i "s%:`which go | sed 's%/bin/go%%g'`%%g" $HOME/.bash_profile
 		rm -rf `which go | sed 's%/bin/go%%g'`
 		sudo apt install tar wget -y
