@@ -1,6 +1,7 @@
 #!/bin/bash
 # Default variables
-uninstall="false"
+function="install"
+
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -24,7 +25,7 @@ while test $# -gt 0; do
 		return 0 2>/dev/null; exit 0
 		;;
 	-u|--uninstall)
-		uninstall="true"
+		function="uninstall"
 		shift
 		;;
 	*|--)
@@ -32,20 +33,9 @@ while test $# -gt 0; do
 		;;
 	esac
 done
-# Actions
-if [ "$uninstall" = "true" ]; then
-	echo -e "${C_LGn}Uninstalling Docker...${RES}"
-	sudo dpkg -r dive
-	sudo systemctl stop docker.service
-	sudo systemctl stop docker.socket
-	sudo rm -rf `systemctl cat docker.service | grep -oPm1 "(?<=^#)([^%]+)"` `systemctl cat docker.socket | grep -oPm1 "(?<=^#)([^%]+)"`
-	sudo apt purge docker-engine docker docker.io docker-ce docker-ce-cli -y
-	sudo apt autoremove --purge docker-engine docker docker.io docker-ce -y
-	sudo apt autoclean
-	sudo rm -rf /var/lib/docker /etc/appasudo rmor.d/docker
-	sudo groupdel docker
-	sudo rm -rf /etc/docker /usr/bin/docker /usr/libexec/docker /usr/libexec/docker/cli-plugins/docker-buildx /usr/libexec/docker/cli-plugins/docker-scan /usr/libexec/docker/cli-plugins/docker-app /usr/share/keyrings/docker-archive-keyring.gpg
-else
+
+# Functions
+install() {
 	cd
 	if ! docker --version; then
 		echo -e "${C_LGn}Docker installation...${RES}"
@@ -64,5 +54,21 @@ else
 		sudo apt install ./dive_0.9.2_linux_amd64.deb
 		rm -rf dive_0.9.2_linux_amd64.deb
 	fi
-fi
+}
+uninstall() {
+	echo -e "${C_LGn}Uninstalling Docker...${RES}"
+	sudo dpkg -r dive
+	sudo systemctl stop docker.service
+	sudo systemctl stop docker.socket
+	sudo rm -rf `systemctl cat docker.service | grep -oPm1 "(?<=^#)([^%]+)"` `systemctl cat docker.socket | grep -oPm1 "(?<=^#)([^%]+)"`
+	sudo apt purge docker-engine docker docker.io docker-ce docker-ce-cli -y
+	sudo apt autoremove --purge docker-engine docker docker.io docker-ce -y
+	sudo apt autoclean
+	sudo rm -rf /var/lib/docker /etc/appasudo rmor.d/docker
+	sudo groupdel docker
+	sudo rm -rf /etc/docker /usr/bin/docker /usr/libexec/docker /usr/libexec/docker/cli-plugins/docker-buildx /usr/libexec/docker/cli-plugins/docker-scan /usr/libexec/docker/cli-plugins/docker-app /usr/share/keyrings/docker-archive-keyring.gpg
+}
+
+# Actions
+$function
 echo -e "${C_LGn}Done!${RES}"
