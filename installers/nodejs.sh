@@ -1,7 +1,8 @@
 #!/bin/bash
 # Default variables
+function="install"
 nodejs_version="14.17.5"
-uninstall="false"
+
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -33,7 +34,7 @@ while test $# -gt 0; do
 		shift
 		;;
 	-u|--uninstall)
-		uninstall="true"
+		function="uninstall"
 		shift
 		;;
 	*|--)
@@ -41,15 +42,22 @@ while test $# -gt 0; do
 		;;
 	esac
 done
-# Actions
-if [ "$uninstall" = "true" ]; then
+
+# Functions
+install() {
+	if ! node --version | grep -q $nodejs_version; then
+		echo -e "${C_LGn}Node.js installation...${RES}"
+		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/installers/nvm_installer.sh)
+		nvm install $nodejs_version
+		nvm use $nodejs_version
+	fi
+}
+uninstall() {
 	echo -e "${C_LGn}Uninstalling Node.js...${RES}"
 	nvm deactivate
 	nvm uninstall $nodejs_version
-elif ! node --version | grep -q $nodejs_version; then
-	echo -e "${C_LGn}Node.js installation...${RES}"
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/installers/nvm_installer.sh)
-	nvm install $nodejs_version
-	nvm use $nodejs_version
-fi
+}
+
+# Actions
+$function
 echo -e "${C_LGn}Done!${RES}"
