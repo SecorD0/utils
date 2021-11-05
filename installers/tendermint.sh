@@ -1,7 +1,8 @@
 #!/bin/bash
 # Default variables
-tendermint_version=""
 function="install"
+tendermint_version=""
+
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -53,7 +54,7 @@ install() {
 	mkdir "$temp_dir"
 	cd "$temp_dir"
 	if [ ! -n "$tendermint_version" ]; then
-		local tendermint_version=`wget -qO- https://api.github.com/repos/tendermint/tendermint/releases/latest | jq -r ".tag_name" | sed "s%v%%g"`
+		tendermint_version=`wget -qO- https://api.github.com/repos/tendermint/tendermint/releases/latest | jq -r ".tag_name" | sed "s%v%%g"`
 	fi
 	wget -q "https://github.com/tendermint/tendermint/releases/download/v${tendermint_version}/tendermint_${tendermint_version}_linux_amd64.tar.gz"
 	tar -xvf "tendermint_${tendermint_version}_linux_amd64.tar.gz"
