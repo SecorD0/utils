@@ -36,9 +36,9 @@ done
 
 # Functions
 install() {
+	echo -e "${C_LGn}Docker installation...${RES}"
 	cd
 	if ! docker --version; then
-		echo -e "${C_LGn}Docker installation...${RES}"
 		sudo apt update
 		sudo apt install curl apt-transport-https ca-certificates gnupg lsb-release -y
 		curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -56,7 +56,7 @@ install() {
 	fi
 }
 uninstall() {
-	echo -e "${C_LGn}Uninstalling Docker...${RES}"
+	echo -e "${C_LGn}Docker uninstalling...${RES}"
 	sudo dpkg -r dive
 	sudo systemctl stop docker.service
 	sudo systemctl stop docker.socket
