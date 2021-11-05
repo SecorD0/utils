@@ -1,7 +1,8 @@
 #!/bin/bash
 # Default variables
+function="install"
 nvm_version="0.38.0"
-uninstall="false"
+
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -33,7 +34,7 @@ while test $# -gt 0; do
 		shift
 		;;
 	-u|--uninstall)
-		uninstall="true"
+		function="uninstall"
 		shift
 		;;
 	*|--)
@@ -41,18 +42,25 @@ while test $# -gt 0; do
 		;;
 	esac
 done
-# Actions
-if [ "$uninstall" = "true" ]; then
+
+# Functions
+install() {
+	if ! nvm --version | grep -q $nvm_version; then
+		echo -e "${C_LGn}NVM installation...${RES}"
+		sudo apt install wget -y
+		cd $HOME
+		. <(wget -qO- "https://raw.githubusercontent.com/nvm-sh/nvm/v${nvm_version}/install.sh")
+		export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+		[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+	fi
+}
+uninstall() {
 	echo -e "${C_LGn}Uninstalling NVM...${RES}"
 	rm -rf $NVM_DIR
 	unset nvm
-elif ! nvm --version | grep -q $nvm_version; then
-	echo -e "${C_LGn}NVM installation...${RES}"
-	sudo apt install wget -y
-	cd $HOME
-	. <(wget -qO- "https://raw.githubusercontent.com/nvm-sh/nvm/v${nvm_version}/install.sh")
-	export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-fi
+}
+
+# Actions
+$function
 . $HOME/.bashrc
 echo -e "${C_LGn}Done!${RES}"
