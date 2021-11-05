@@ -1,7 +1,8 @@
 #!/bin/bash
 # Default variables
-uninstall="false"
+function="install"
 nightly="false"
+
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -30,7 +31,7 @@ while test $# -gt 0; do
 		shift
 		;;
 	-u|--uninstall)
-		uninstall="true"
+		function="uninstall"
 		shift
 		;;
 	*|--)
@@ -38,11 +39,9 @@ while test $# -gt 0; do
 		;;
 	esac
 done
-# Actions
-if [ "$uninstall" = "true" ]; then
-	echo -e "${C_LGn}Uninstalling Rust...${RES}"
-	rustup self uninstall -y
-else
+
+# Functions
+install() {
 	echo -e "${C_LGn}Rust installation...${RES}"
 	sudo apt install curl build-essential pkg-config libssl-dev libudev-dev clang make -y
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -50,6 +49,13 @@ else
 	if [ "$nightly" = "true" ]; then
 		rustup toolchain install nightly
 		rustup default nightly
-	fi	
-fi
+	fi
+}
+uninstall() {
+	echo -e "${C_LGn}Rust uninstalling...${RES}"
+	rustup self uninstall -y
+}
+
+# Actions
+$function
 echo -e "${C_LGn}Done!${RES}"
