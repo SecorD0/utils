@@ -47,7 +47,7 @@ done
 install() {
 	if ! node --version | grep -q $nodejs_version; then
 		echo -e "${C_LGn}Node.js installation...${RES}"
-		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/installers/nvm_installer.sh)
+		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/installers/nvm.sh)
 		nvm install $nodejs_version
 		nvm use $nodejs_version
 	fi
