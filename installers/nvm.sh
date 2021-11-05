@@ -57,6 +57,7 @@ install() {
 uninstall() {
 	echo -e "${C_LGn}Uninstalling NVM...${RES}"
 	rm -rf $NVM_DIR
+	sed -i "/NVM_DIR/d" $HOME/.bashrc
 	unset nvm
 }
 
