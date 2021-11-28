@@ -44,7 +44,7 @@ done
 install() {
 	echo -e "${C_LGn}Rust installation...${RES}"
 	sudo apt install curl build-essential pkg-config libssl-dev libudev-dev clang make -y
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y
 	echo -e "${C_R}^ X Don't do that X ^${RES}\n"
 	. $HOME/.cargo/env
 	if [ "$nightly" = "true" ]; then
