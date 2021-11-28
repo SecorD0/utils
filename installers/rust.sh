@@ -58,4 +58,5 @@ uninstall() {
 
 # Actions
 $function
+echo -e "${C_R}^ Don't do that ^${RES}\n"
 echo -e "${C_LGn}Done!${RES}"
