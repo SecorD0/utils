@@ -45,6 +45,7 @@ install() {
 	echo -e "${C_LGn}Rust installation...${RES}"
 	sudo apt install curl build-essential pkg-config libssl-dev libudev-dev clang make -y
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	echo -e "${C_R}^ Don't do that ^${RES}\n"
 	. $HOME/.cargo/env
 	if [ "$nightly" = "true" ]; then
 		rustup toolchain install nightly
@@ -58,5 +59,4 @@ uninstall() {
 
 # Actions
 $function
-echo -e "${C_R}^ Don't do that ^${RES}\n"
 echo -e "${C_LGn}Done!${RES}"
