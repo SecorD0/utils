@@ -53,7 +53,7 @@ install() {
 	fi
 }
 uninstall() {
-	echo -e "${C_LGn}Uninstalling Node.js...${RES}"
+	echo -e "${C_LGn}Node.js uninstalling...${RES}"
 	nvm deactivate
 	nvm uninstall $nodejs_version
 }
