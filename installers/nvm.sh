@@ -47,6 +47,8 @@ done
 install() {
 	echo -e "${C_LGn}NVM installation...${RES}"
 	if ! nvm --version | grep -q $nvm_version; then
+		sudo apt update
+		sudo apt upgrade -y
 		sudo apt install wget -y
 		cd $HOME
 		. <(wget -qO- "https://raw.githubusercontent.com/nvm-sh/nvm/v${nvm_version}/install.sh")
