@@ -49,6 +49,8 @@ install() {
 	if ! go version | grep -q $go_version; then 
 		sed -i "s%:`which go | sed 's%/bin/go%%g'`%%g" $HOME/.bash_profile
 		rm -rf `which go | sed 's%/bin/go%%g'`
+		sudo apt update
+		sudo apt upgrade -y
 		sudo apt install tar wget -y
 		cd $HOME
 		wget "https://golang.org/dl/go${go_version}.linux-amd64.tar.gz"
