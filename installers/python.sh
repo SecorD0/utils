@@ -42,6 +42,8 @@ done
 install() {
 	echo -e "${C_LGn}Python installation...${RES}"
 	if ! python3 --version | grep -q "3.8.10"; then
+		sudo apt update
+		sudo apt upgrade -y
 		sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y
 		wget "https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz"
 		sudo rm -rf /usr/local/python
