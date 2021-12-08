@@ -43,6 +43,8 @@ done
 # Functions
 install() {
 	echo -e "${C_LGn}Rust installation...${RES}"
+	sudo apt update
+	sudo apt upgrade -y
 	sudo apt install curl build-essential pkg-config libssl-dev libudev-dev clang make -y
 	curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y
 	echo -e "${C_R}^ X Don't do that X ^${RES}\n"
