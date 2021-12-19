@@ -110,5 +110,4 @@ else
 	fi
 fi
 sed -i '/^$/d' $HOME/.bash_profile
-echo >> $HOME/.bash_profile
 . $HOME/.bash_profile
