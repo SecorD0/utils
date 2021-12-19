@@ -31,7 +31,7 @@ while test $# -gt 0; do
 		echo -e "https://github.com/SecorD0/utils/blob/main/miscellaneous/insert_variable.sh - script URL"
 		echo -e "https://t.me/letskynode — node Community"
 		echo
-		return 0
+		return 0 2>/dev/null; exit 0
 		;;
 	-n*|--name*)
 		if ! grep -q "=" <<< "$1"; then shift; fi
@@ -68,7 +68,7 @@ touch $HOME/.bash_profile
 . $HOME/.bash_profile
 if [ ! -n "$name" ]; then
 	printf_n "${C_R}You didn't specify a name via${RES} -n ${C_R}option!${RES}"
-	return 1
+	return 1 2>/dev/null; exit 0
 fi
 if [ "${delete}" = "true" ]; then
 	sed -i "/ ${name}=/d" $HOME/.bash_profile
