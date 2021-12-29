@@ -55,11 +55,11 @@ while test $# -gt 0; do
 		shift
 		;;
 	-d|--delete)
-		delete="delete"
+		delete_type="delete"
 		shift
 		;;
-	-d|--delete)
-		delete="delete_all"
+	-da|--delete-all)
+		delete_type="delete_all"
 		shift
 		;;
 	*|--)
