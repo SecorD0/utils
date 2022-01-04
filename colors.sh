@@ -68,7 +68,8 @@ while test $# -gt 0; do
 	-h|--help)
 		. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
 		echo
-		echo -e "${C_LGn}Functionality${RES}: the script assigns variables with colors to be used in the texts (e.g. in the 'echo' and 'printf' commands)"
+		echo -e "${C_LGn}Functionality${RES}: the script assigns variables with colors to be used in the texts (e.g."
+		echo -e "in the 'echo' and 'printf' commands)"
 		echo
 		echo -e "Usage: script ${C_LGn}[OPTIONS]${RES}"
 		echo
