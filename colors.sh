@@ -126,7 +126,7 @@ while test $# -gt 0; do
 		echo -e "https://github.com/SecorD0/utils/blob/main/colors.sh - script URL"
 		echo -e "https://t.me/letskynode — node Community"
 		echo
-		return 0
+		return 0 2>/dev/null; exit 0
 		;;
 	*|--)
 		break
