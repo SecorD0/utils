@@ -80,7 +80,7 @@ if [ ! -n "$name" ]; then
 fi
 if [ "$delete_type" != "none" ]; then
 	if [ "$delete_type" = "delete" ]; then
-		sed -i '0,/ ${name}=/{/ ${name}=/d;}' $HOME/.bash_profile
+		sed -i "0,/ ${name}=/{/ ${name}=/d;}" $HOME/.bash_profile
 	elif [ "$delete_type" = "delete_all" ]; then
 		sed -i "/ ${name}=/d" $HOME/.bash_profile
 	fi
