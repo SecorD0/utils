@@ -1,5 +1,6 @@
 #!/bin/bash
 # Default variables
+dive="false"
 function="install"
 
 # Options
@@ -16,6 +17,7 @@ while test $# -gt 0; do
 		echo
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h, --help       show the help page"
+		echo -e "  -d, --dive       install Dive (images analyser)"
 		echo -e "  -u, --uninstall  uninstall Docker (${C_R}completely delete all images and containers${RES})"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
@@ -23,6 +25,10 @@ while test $# -gt 0; do
 		echo -e "https://t.me/letskynode — node Community"
 		echo
 		return 0 2>/dev/null; exit 0
+		;;
+	-d|--dive)
+		dive="true"
+		shift
 		;;
 	-u|--uninstall)
 		function="uninstall"
@@ -49,7 +55,7 @@ install() {
 		docker_version=`apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)"`
 		sudo apt install docker-ce="$docker_version" docker-ce-cli="$docker_version" containerd.io -y
 	fi
-	if ! dpkg -s dive | grep -q "ok installed"; then
+	if [ "$dive" = "true" ] && ! dpkg -s dive | grep -q "ok installed"; then
 		echo -e "${C_LGn}Dive installing...${RES}"
 		wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
 		sudo apt install ./dive_0.9.2_linux_amd64.deb
