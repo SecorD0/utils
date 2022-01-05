@@ -6,6 +6,7 @@ file=""
 is_text="false"
 show_warnings="false"
 type="HTML"
+
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -77,8 +78,10 @@ while test $# -gt 0; do
 		;;
 	esac
 done
+
 # Functions
 printf_n(){ printf "$1\n" "${@:2}"; }
+
 # Actions
 sudo apt install wget libxml2-utils -y &>/dev/null
 if [ ! -n "$xpath" ]; then
@@ -94,15 +97,11 @@ command=("xmllint")
 command+=("--xpath \"${xpath}\"")
 [[ "$show_warnings" = "false" ]] && command+=("--nowarning 2>/dev/null")
 if [ -n "$url" ]; then
-	source="- <<EOF
-`wget -qO- $url`
-EOF"
+	source="<(wget -qO- -o /dev/null \"$url\")"
 elif [ -n "$file" ]; then
 	source="$file"
 elif [ "$is_text" = "true" ]; then
-	source="- <<EOF
-$text
-EOF"
+	source="<(echo \"$text\")"
 fi
 eval "${command[@]} ${source}"
-unset xpath url file is_text show_warnings type
+unset xpath url file is_text show_warnings type command source
