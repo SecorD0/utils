@@ -18,7 +18,7 @@ while test $# -gt 0; do
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h,  --help                 show the help page"
 		echo -e "  -ts, --token-symbol SYMBOL  SYMBOL of token to parse the price. E.g. ${C_LGn}BTC${RES}, ${C_LGn}eth${RES}, ${C_LGn}BnB${RES}"
-		echo -e "  -m,  --multiplier NUMBER    NUMBER of tokens to calculate the product. You can separate the digits with the spacebar: ${C_LGn}\"1 000\"${RES}, ${C_LGn}\"100 000\"${RES}"
+		echo -e "  -m,  --multiplier AMOUNT    AMOUNT of tokens to calculate the product. You can separate the digits with the spacebar: ${C_LGn}\"1 000\"${RES}, ${C_LGn}\"100 000\"${RES}"
 		echo -e "  -r,  --round NUMBER         round the value to NUMBER decimal places"
 		echo
 		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
