@@ -43,7 +43,7 @@ while test $# -gt 0; do
 		echo -e "https://github.com/SecorD0/utils/blob/main/parsers/xpath.sh - script URL"
 		echo -e "https://t.me/letskynode — node Community"
 		echo
-		return 0
+		return 0 2>/dev/null; exit 0
 		;;
 	-x*|--xpath*)
 		if ! grep -q "=" <<< "$1"; then shift; fi
@@ -86,11 +86,11 @@ printf_n(){ printf "$1\n" "${@:2}"; }
 sudo apt install wget libxml2-utils -y &>/dev/null
 if [ ! -n "$xpath" ]; then
 	printf_n "${C_R}You didn't specify XPath via${RES} -x ${C_R}option!${RES}"
-	return 1
+	return 1 2>/dev/null; exit 1
 fi
 if [ ! -n "$url" ] && [ ! -n "$file" ] && [ "$is_text" = "false" ]; then
 	printf_n "${C_R}You didn't specify where to parse the source code from! Use${RES} -h ${C_R}option to view the help page${RES}"
-	return 1
+	return 1 2>/dev/null; exit 1
 fi
 command=("xmllint")
 [[ "$type" != "XML" ]] && command+=("--html")
