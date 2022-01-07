@@ -42,9 +42,9 @@ done
 
 # Functions
 install() {
-	echo -e "${C_LGn}Docker installation...${RES}"
 	cd
 	if ! docker --version; then
+		echo -e "${C_LGn}Docker installation...${RES}"
 		sudo apt update
 		sudo apt upgrade -y
 		sudo apt install curl apt-transport-https ca-certificates gnupg lsb-release -y
@@ -55,8 +55,18 @@ install() {
 		docker_version=`apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)"`
 		sudo apt install docker-ce="$docker_version" docker-ce-cli="$docker_version" containerd.io -y
 	fi
+	if ! docker-compose --version; then
+		echo -e "${C_LGn}Docker Сompose installation...${RES}"
+		sudo apt update
+		sudo apt upgrade -y
+		mkdir -p /usr/local/bin/
+		local docker_compose_version=`wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name"`
+		sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+		sudo chmod +x /usr/bin/docker-compose
+		. $HOME/.bash_profile
+	fi
 	if [ "$dive" = "true" ] && ! dpkg -s dive | grep -q "ok installed"; then
-		echo -e "${C_LGn}Dive installing...${RES}"
+		echo -e "${C_LGn}Dive installation...${RES}"
 		wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
 		sudo apt install ./dive_0.9.2_linux_amd64.deb
 		rm -rf dive_0.9.2_linux_amd64.deb
@@ -67,7 +77,7 @@ uninstall() {
 	sudo dpkg -r dive
 	sudo systemctl stop docker.service
 	sudo systemctl stop docker.socket
-	sudo rm -rf `systemctl cat docker.service | grep -oPm1 "(?<=^#)([^%]+)"` `systemctl cat docker.socket | grep -oPm1 "(?<=^#)([^%]+)"`
+	sudo rm -rf `systemctl cat docker.service | grep -oPm1 "(?<=^#)([^%]+)"` `systemctl cat docker.socket | grep -oPm1 "(?<=^#)([^%]+)"` /usr/bin/docker-compose
 	sudo apt purge docker-engine docker docker.io docker-ce docker-ce-cli -y
 	sudo apt autoremove --purge docker-engine docker docker.io docker-ce -y
 	sudo apt autoclean
