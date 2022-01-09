@@ -59,16 +59,11 @@ install() {
 		echo -e "${C_LGn}Docker Сompose installation...${RES}"
 		sudo apt update
 		sudo apt upgrade -y
-		while true; do
-			local docker_compose_version=`wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name"`
-			sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
-			if [ `wc -c < /usr/bin/docker-compose` -ge 1000 ]; then
-				sudo chmod +x /usr/bin/docker-compose
-				. $HOME/.bash_profile
-				break
-			fi
-			sleep 1
-		done
+		sudo apt install wget jq -y
+		local docker_compose_version=`wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name"`
+		sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+		sudo chmod +x /usr/bin/docker-compose
+		. $HOME/.bash_profile
 	fi
 	if [ "$dive" = "true" ] && ! dpkg -s dive | grep -q "ok installed"; then
 		echo -e "${C_LGn}Dive installation...${RES}"
