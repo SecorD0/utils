@@ -22,7 +22,11 @@ while test $# -gt 0; do
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
 		echo -e "https://github.com/SecorD0/utils/blob/main/installers/docker.sh - script URL"
+		echo -e "https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository — Docker installation"
+		echo -e "https://docs.docker.com/compose/install/#install-compose — Docker Compose installation"
+		echo -e "https://github.com/wagoodman/dive#installation — Dive installation"
 		echo -e "https://t.me/letskynode — node Community"
+		echo -e "https://teletype.in/@letskynode — guides and articles"
 		echo
 		return 0 2>/dev/null; exit 0
 		;;
