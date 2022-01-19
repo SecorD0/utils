@@ -52,7 +52,7 @@ install() {
 		rm -rf `which go | sed 's%/bin/go%%g'`
 		sudo apt update
 		sudo apt upgrade -y
-		sudo apt install tar wget -y
+		sudo apt install tar wget make -y
 		cd $HOME
 		wget "https://golang.org/dl/go${go_version}.linux-amd64.tar.gz"
 		sudo rm -rf /usr/local/go
