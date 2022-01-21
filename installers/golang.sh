@@ -54,7 +54,7 @@ install() {
 		sudo apt upgrade -y
 		sudo apt install tar wget make -y
 		cd $HOME
-		wget "https://go.dev/dl/go${go_version}.linux-amd64.tar.gz"
+		wget -t 5 "https://go.dev/dl/go${go_version}.linux-amd64.tar.gz"
 		sudo rm -rf /usr/local/go
 		sudo tar -C /usr/local -xzf "go${go_version}.linux-amd64.tar.gz"
 		rm "go${go_version}.linux-amd64.tar.gz"
