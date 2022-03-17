@@ -52,8 +52,9 @@ install() {
 		sudo apt update
 		sudo apt upgrade -y
 		sudo apt install curl apt-transport-https ca-certificates gnupg lsb-release -y
-		curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-		echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu `lsb_release -cs` stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+		. /etc/*-release
+		wget -qO- "https://download.docker.com/linux/${DISTRIB_ID,,}/gpg" | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+		echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 		sudo apt update
 		sudo apt install docker-ce docker-ce-cli containerd.io -y
 		docker_version=`apt-cache madison docker-ce | grep -oPm1 "(?<=docker-ce \| )([^_]+)(?= \| https)"`
@@ -79,8 +80,8 @@ install() {
 uninstall() {
 	echo -e "${C_LGn}Docker uninstalling...${RES}"
 	sudo dpkg -r dive
-	sudo systemctl stop docker.service
-	sudo systemctl stop docker.socket
+	sudo systemctl stop docker.service docker.socket
+	sudo systemctl disable docker.service docker.socket
 	sudo rm -rf `systemctl cat docker.service | grep -oPm1 "(?<=^#)([^%]+)"` `systemctl cat docker.socket | grep -oPm1 "(?<=^#)([^%]+)"` /usr/bin/docker-compose
 	sudo apt purge docker-engine docker docker.io docker-ce docker-ce-cli -y
 	sudo apt autoremove --purge docker-engine docker docker.io docker-ce -y
