@@ -92,6 +92,7 @@ else
 		unset "$rename"
 		unalias "$rename" 2>/dev/null
 		if [ ! -n "$value" ]; then
+			. $HOME/.bash_profile
 			return 0 2>/dev/null; exit 0
 		fi
 	fi
