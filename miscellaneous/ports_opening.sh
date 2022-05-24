@@ -34,6 +34,7 @@ main() {
 	if sudo ufw status | grep -q "Status: active"; then
 		sudo ufw allow 22
 		for open_this_port in "$@"; do
+			echo "$open_this_port"
 			sudo ufw allow "$open_this_port"
 		done
 	else
@@ -43,6 +44,7 @@ main() {
 			sudo apt install iptables-persistent -y
 		fi
 		for open_this_port in "$@"; do
+			echo "$open_this_port"
 			sudo iptables -I INPUT -p tcp --dport "$open_this_port" -j ACCEPT
 		done
 		sudo netfilter-persistent save
@@ -52,4 +54,4 @@ main() {
 }
 
 # Actions
-main
+main "$@"
