@@ -15,9 +15,9 @@ echo -e "\033[1;34m
                       \033[1;32mTwitter: \033[0;35mhttps://twitter.com/1package_\033[0m
 "
 if [ -n "$1" ]; then
-	echo -e "                                 \033[1;32mCreated by \033[0;35m$1\033[0m"
+	echo -e "                           \033[1;32mThe script created by \033[0;35m$1\033[0m"
 else
-	echo -e "                                 \033[1;32mCreated by \033[0;35mSecorD\033[0m"
+	echo -e "                           \033[1;32mThe script created by \033[0;35mSecorD\033[0m"
 fi
 echo -e "\033[1;34m_______________________________________________________________________________________\033[0m
 
