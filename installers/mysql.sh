@@ -15,8 +15,8 @@ while test $# -gt 0; do
 		echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
 		echo
 		echo -e "${C_LGn}Options${RES}:"
-		echo -e "  -h, --help       show the help page"
-		echo -e "  -u, --uninstall  uninstall MySQL (${C_R}completely delete all databases${RES})"
+		echo -e "  -h,  --help       show the help page"
+		echo -e "  -un, --uninstall  uninstall MySQL (${C_R}completely delete all databases${RES})"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
 		echo -e "https://github.com/SecorD0/utils/blob/main/installers/mysql.sh - script URL"
@@ -25,7 +25,7 @@ while test $# -gt 0; do
 		echo
 		return 0 2>/dev/null; exit 0
 		;;
-	-u|--uninstall)
+	-u|-un|--uninstall)
 		function="uninstall"
 		shift
 		;;
