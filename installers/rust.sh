@@ -16,9 +16,9 @@ while test $# -gt 0; do
 		echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
 		echo
 		echo -e "${C_LGn}Options${RES}:"
-		echo -e "  -h, --help       show the help page"
-		echo -e "  -n, --nightly    install nightly version of Rust"
-		echo -e "  -u, --uninstall  uninstall Rust"
+		echo -e "  -h,  --help       show the help page"
+		echo -e "  -n,  --nightly    install nightly version of Rust"
+		echo -e "  -un, --uninstall  uninstall Rust"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
 		echo -e "https://github.com/SecorD0/utils/blob/main/installers/rust.sh — script URL"
@@ -32,7 +32,7 @@ while test $# -gt 0; do
 		nightly="true"
 		shift
 		;;
-	-u|--uninstall)
+	-u|-un|--uninstall)
 		function="uninstall"
 		shift
 		;;
