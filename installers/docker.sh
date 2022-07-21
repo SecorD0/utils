@@ -16,8 +16,8 @@ while test $# -gt 0; do
 		echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
 		echo
 		echo -e "${C_LGn}Options${RES}:"
-		echo -e "  -h, --help       show the help page"
-		echo -e "  -d, --dive       install Dive (images analyser)"
+		echo -e "  -h,  --help       show the help page"
+		echo -e "  -d,  --dive       install Dive (images analyser)"
 		echo -e "  -un, --uninstall  uninstall Docker (${C_R}completely delete all images and containers${RES})"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
