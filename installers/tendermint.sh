@@ -16,9 +16,9 @@ while test $# -gt 0; do
 		echo -e "${C_LGn}Usage${RES}: script ${C_LGn}[OPTIONS]${RES}"
 		echo
 		echo -e "${C_LGn}Options${RES}:"
-		echo -e "  -h, --help             show the help page"
-		echo -e "  -v, --version VERSION  Tendermint VERSION to install (default is ${C_LGn}current${RES})"
-		echo -e "  -u, --uninstall        uninstall Tendermint"
+		echo -e "  -h,  --help             show the help page"
+		echo -e "  -v,  --version VERSION  Tendermint VERSION to install (default is ${C_LGn}current${RES})"
+		echo -e "  -un, --uninstall        uninstall Tendermint"
 		echo
 		echo -e "You can use either \"=\" or \" \" as an option and value ${C_LGn}delimiter${RES}"
 		echo
@@ -35,7 +35,7 @@ while test $# -gt 0; do
 		tendermint_version=`option_value "$1"`
 		shift
 		;;
-	-u|--uninstall)
+	-u|-un|--uninstall)
 		function="uninstall"
 		shift
 		;;
