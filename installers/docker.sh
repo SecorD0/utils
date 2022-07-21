@@ -18,7 +18,7 @@ while test $# -gt 0; do
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h, --help       show the help page"
 		echo -e "  -d, --dive       install Dive (images analyser)"
-		echo -e "  -u, --uninstall  uninstall Docker (${C_R}completely delete all images and containers${RES})"
+		echo -e "  -un, --uninstall  uninstall Docker (${C_R}completely delete all images and containers${RES})"
 		echo
 		echo -e "${C_LGn}Useful URLs${RES}:"
 		echo -e "https://github.com/SecorD0/utils/blob/main/installers/docker.sh - script URL"
@@ -34,7 +34,7 @@ while test $# -gt 0; do
 		dive="true"
 		shift
 		;;
-	-u|--uninstall)
+	-u|-un|--uninstall)
 		function="uninstall"
 		shift
 		;;
