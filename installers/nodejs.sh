@@ -1,7 +1,7 @@
 #!/bin/bash
 # Default variables
 function="install"
-nodejs_version="14.17.5"
+nodejs_version=`wget -qO- https://api.github.com/repos/nodejs/node/releases/latest | jq -r ".tag_name" | sed "s%v%%g"`
 
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
