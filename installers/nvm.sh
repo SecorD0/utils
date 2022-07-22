@@ -1,7 +1,7 @@
 #!/bin/bash
 # Default variables
 function="install"
-nvm_version="0.38.0"
+nvm_version=`wget -qO- https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r ".tag_name" | sed "s%v%%g"`
 
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
