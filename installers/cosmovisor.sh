@@ -38,7 +38,8 @@ done
 # Functions
 install() {
 	echo -e "${C_LGn}Cosmovisor installation...${RES}"
-	sudo apt update && sudo apt upgrade -y
+	sudo apt update
+	sudo apt upgrade -y
 	sudo apt install wget git build-essential make jq -y
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/installers/golang.sh)
 	cd
