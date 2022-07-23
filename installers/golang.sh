@@ -1,7 +1,7 @@
 #!/bin/bash
 # Default variables
 function="install"
-go_version="1.17.2"
+go_version=`wget -qO- https://golang.org/VERSION?m=text | sed "s%go%%g"`
 
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
