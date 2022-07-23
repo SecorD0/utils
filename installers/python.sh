@@ -1,7 +1,7 @@
 #!/bin/bash
 # Default variables
 function="install"
-python_version="3.9.7"
+python_version=`wget -qO- https://endoflife.date/api/python.json | jq -r ".[0].latest"`
 
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
